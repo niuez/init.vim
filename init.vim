@@ -219,34 +219,4 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 nnoremap ge :NvimTreeToggle<CR>
-let g:nvim_tree_show_icons = {
-    \ 'git': 1,
-    \ 'folders': 1,
-    \ 'files': 1,
-    \ 'folder_arrows': 0,
-    \ }
-let g:nvim_tree_icons = {
-    \ 'default': "\u251c",
-    \ 'symlink': "\u251c",
-    \ 'git': {
-    \   'unstaged': "?",
-    \   'staged': "✓",
-    \   'unmerged': "\u26a1",
-    \   'renamed': "➜",
-    \   'untracked': "*",
-    \   'deleted': "✗",
-    \   'ignored': "◌"
-    \   },
-    \ 'folder': {
-    \   'arrow_open': "\u25b7",
-    \   'arrow_closed': "\u25b6",
-    \   'default': "\u25b6",
-    \   'open': "\u25b7",
-    \   'empty': "\u25b6",
-    \   'empty_open': "\u25b7",
-    \   'symlink': "\u25b6",
-    \   'symlink_open': "\u25b7",
-    \   }
-    \ }
-
 lua require('init')

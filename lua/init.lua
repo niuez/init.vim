@@ -16,8 +16,49 @@ require'nvim-treesitter.configs'.setup {
 }
 
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+local codicon_map = require'codicon'.codicon_map
+
+vim.g.nvim_tree_show_icons = {
+  git = 1,
+  folders = 1,
+  files = 0,
+  folder_arrows = 0,
+}
+vim.g.nvim_tree_icons = {
+  default = "",
+  symlink = "",
+  git = {
+    unstaged = '?',
+    staged = "✓",
+    unmerged = codicon_map['git-compare'],
+    renamed = codicon_map['arrow-small-right'],
+    untracked = "*",
+    deleted = "✗",
+    ignored = "-"
+  },
+  folder = {
+    arrow_open = codicon_map['folder'],
+    arrow_closed = codicon_map['folder-opened'],
+    default = codicon_map['folder'],
+    open = codicon_map['folder-opened'],
+    empty = codicon_map['folder'],
+    empty_open = codicon_map['folder-opened'],
+    symlink = codicon_map['file-symlink-directory'],
+    symlink_open = codicon_map['file-symlink-directory'],
+  }
+}
+
 
 require'nvim-tree'.setup {
+  diagnostics = {
+    enable = false,
+    icons = {
+      error = codicon_map['error'],
+      warning = codicon_map['warning'],
+      info = codicon_map['info'],
+      hint = codicon_map['info'],
+    }
+  },
   view = {
     mappings = {
       custom_only = true,

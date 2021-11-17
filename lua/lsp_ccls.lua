@@ -1,4 +1,5 @@
 local omnifunc = require'nvim_omnifunc'
+local codicon = require'codicon'
 
 function _G.cclsomnifunc(findstart, base)
   return omnifunc.lsp.create_lsp_omnifunc(function(completion_item, ctx)
@@ -6,9 +7,9 @@ function _G.cclsomnifunc(findstart, base)
     local word = omnifunc.lsp.get_completion_word(completion_item)
     return {
       word = word,
-      abbr = word,
-      kind = vim.lsp.util._get_completion_item_kind_name(completion_item.kind),
-      menu = '',
+      kind = word,
+      abbr = codicon.convert_lsp_kindname_to_codicon(vim.lsp.util._get_completion_item_kind_name(completion_item.kind), " "),
+      menu = info,
       info = info,
       icase = 1,
       dup = 1,
