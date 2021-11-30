@@ -1,5 +1,6 @@
 require 'lsp_ccls'
 require 'lsp_lua'
+require 'lsp_rust_analyzer'
 
 require'lsp_signature'.setup({
   bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -37,12 +38,12 @@ vim.g.nvim_tree_icons = {
     ignored = "-"
   },
   folder = {
-    arrow_open = codicon_map['folder'],
-    arrow_closed = codicon_map['folder-opened'],
-    default = codicon_map['folder'],
-    open = codicon_map['folder-opened'],
-    empty = codicon_map['folder'],
-    empty_open = codicon_map['folder-opened'],
+    arrow_open = codicon_map['chevron-right'],
+    arrow_closed = codicon_map['chevron-down'],
+    default = codicon_map['chevron-right'],
+    open = codicon_map['chevron-down'],
+    empty = codicon_map['chevron-right'],
+    empty_open = codicon_map['chevron-down'],
     symlink = codicon_map['file-symlink-directory'],
     symlink_open = codicon_map['file-symlink-directory'],
   }
@@ -51,7 +52,7 @@ vim.g.nvim_tree_icons = {
 
 require'nvim-tree'.setup {
   diagnostics = {
-    enable = false,
+    enable = true,
     icons = {
       error = codicon_map['error'],
       warning = codicon_map['warning'],
