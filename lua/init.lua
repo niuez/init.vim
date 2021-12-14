@@ -1,5 +1,6 @@
 require 'lsp_ccls'
 require 'lsp_lua'
+require 'lsp_ts'
 require 'lsp_rust_analyzer'
 
 require'lsp_signature'.setup({
@@ -10,11 +11,24 @@ require'lsp_signature'.setup({
   hint_enable=false,
 })
 
+-- tree sitter for satysfi
+-- note: you must move queries(tree-sitter-satysfi/queries/highlight.scm) into (nvim-treesitter/queries/satysfi/)
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.satysfi = {
+  install_info = {
+    url = "https://github.com/monaqa/tree-sitter-satysfi", -- local path or git repo
+    files = {"src/parser.c", "src/scanner.c"},
+    revision = "master",
+  },
+  filetype = "satysfi", -- if filetype does not agrees with parser name
+}
+
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true
   }
 }
+
 
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 local codicon_map = require'codicon'.codicon_map

@@ -1,7 +1,7 @@
 local omnifunc = require'nvim_omnifunc'
 local codicon = require'codicon'
 
-function _G.cclsomnifunc(findstart, base)
+function _G.tsomnifunc(findstart, base)
   return omnifunc.lsp.create_lsp_omnifunc(function(completion_item, ctx)
     local info = completion_item.label
     local word = omnifunc.lsp.get_completion_word(completion_item)
@@ -25,12 +25,12 @@ function _G.cclsomnifunc(findstart, base)
   end)(findstart, base)
 end
 
-local ccls_on_attach = function(client, bufnr)
+local ts_on_attach = function(client, bufnr)
   vim.notify("ccls on attach", vim.log.levels.ERROR, nil)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  buf_set_option('omnifunc', "v:lua.cclsomnifunc")
+  buf_set_option('omnifunc', "v:lua.tsomnifunc")
 
   local opts = { noremap=true, silent=true }
 
@@ -38,14 +38,6 @@ local ccls_on_attach = function(client, bufnr)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 end
 
-require('lspconfig').ccls.setup({
-  init_options = {
-    clang = {
-      extraArgs = {"-std=c++17"}
-    };
-    cache = {
-      directory="/tmp/ccls"
-    };
-  },
-  on_attach = ccls_on_attach
+require('lspconfig').tsserver.setup({
+  on_attach = ts_on_attach
 })

@@ -15,6 +15,7 @@ set runtimepath+=~/.vim/nvim-lspconfig " https://github.com/neovim/nvim-lspconfi
 set runtimepath+=~/.vim/lsp_signature.nvim " https://github.com/ray-x/lsp_signature.nvim
 set runtimepath+=~/.vim/nvim-treesitter " https://github.com/nvim-treesitter/nvim-treesitter
 set runtimepath+=~/.vim/nvim-tree.lua " https://github.com/kyazdani42/nvim-tree.lua
+set runtimepath+=~/.vim/Sierra
 
 filetype plugin indent on
 
@@ -212,7 +213,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 inoremap <silent><expr> <TAB>
-      \ &omnifunc == '' ? "" :
+      \ &omnifunc == '' ? "\<TAB>" :
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ "\<C-x>\<C-o>"
@@ -220,3 +221,4 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 nnoremap ge :NvimTreeToggle<CR>
 lua require('init')
+
