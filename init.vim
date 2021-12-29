@@ -116,6 +116,7 @@ let s:grey = "#6A6868"
 let s:white = "#999999"
 let s:none = "NONE"
 let s:bg = "#242828"
+let s:bg = s:none
 
 function! s:h(group, fg, bg, attr)
   if a:attr != ""
@@ -222,3 +223,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 nnoremap ge :NvimTreeToggle<CR>
 lua require('init')
 
+hi Normal guibg=NONE
+hi LineNr guibg=NONE
+hi VertSplit guibg=NONE
+hi SignColumn guibg=NONE
