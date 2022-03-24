@@ -7,7 +7,7 @@ if exists('&ambw')
   set ambiwidth=double
 endif
 
-let g:lyla_bg_is_none = v:false
+let g:lyla_bg_is_none = v:true
 
 set runtimepath+=~/lyla.vim
 set runtimepath+=~/nvim-omnifunc.lua
@@ -223,7 +223,8 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 nnoremap ge :NvimTreeToggle<CR>
 lua require('init')
 
-hi Normal guibg=NONE
-hi LineNr guibg=NONE
-hi VertSplit guibg=NONE
-hi SignColumn guibg=NONE
+
+"hi Normal guibg=NONE
+"hi LineNr guibg=NONE
+"hi VertSplit guibg=NONE
+"hi SignColumn guibg=NONE
