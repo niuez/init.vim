@@ -10,9 +10,7 @@ require'lsp_signature'.setup({
   },
   hint_enable=false,
 })
-
--- tree sitter for satysfi
--- note: you must move queries(tree-sitter-satysfi/queries/highlight.scm) into (nvim-treesitter/queries/satysfi/)
+-- tree sitter for satysfi note: you must move queries(tree-sitter-satysfi/queries/highlight.scm) into (nvim-treesitter/queries/satysfi/)
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 parser_config.satysfi = {
   install_info = {
@@ -113,3 +111,4 @@ require'nvim-tree'.setup {
     }
   }
 }
+require('luasnip.loaders.from_snipmate').lazy_load()

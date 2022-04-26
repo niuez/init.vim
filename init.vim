@@ -9,14 +9,14 @@ endif
 
 let g:lyla_bg_is_none = v:true
 
-set runtimepath+=~/lyla.vim
-set runtimepath+=~/nvim-omnifunc.lua
+set runtimepath+=~/.vim/lyla.vim
+set runtimepath+=~/.vim/nvim-omnifunc.lua
 set runtimepath+=~/.vim/nvim-lspconfig " https://github.com/neovim/nvim-lspconfig
 set runtimepath+=~/.vim/lsp_signature.nvim " https://github.com/ray-x/lsp_signature.nvim
 set runtimepath+=~/.vim/nvim-treesitter " https://github.com/nvim-treesitter/nvim-treesitter
 set runtimepath+=~/.vim/nvim-tree.lua " https://github.com/kyazdani42/nvim-tree.lua
-set runtimepath+=~/.vim/Sierra
-
+set runtimepath+=~/.vim/LuaSnip
+" set runtimepath+=~/.vim/Sierra
 filetype plugin indent on
 
 let g:codedark_conservative = 1
@@ -41,7 +41,7 @@ autocmd FileType markdown hi! def link markdownItalic Normal
 set background=dark
 
 
-colorscheme lyla_iterm2
+colorscheme lyla
 
 set expandtab
 set tabstop=2
@@ -86,9 +86,7 @@ nmap <C-Space> zz
 tmap <C-q> <C-\><C-n>
 nmap ge :CocCommand explorer<CR>
 nmap gb :CocCommand explorer --sources buffer+,file-<CR>
-imap <C-k> <Plug>(coc-snippets-expand)
-smap <C-k> <Plug>(coc-snippets-expand)
-xmap <C-k> <Plug>(coc-snippets-expand)
+imap <silent><expr> <C-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
 nnoremap [q :cprevious<CR>
 nnoremap ]q :cnext<CR>
 
