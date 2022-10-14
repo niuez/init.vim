@@ -1,7 +1,7 @@
 local omnifunc = require'nvim_omnifunc'
 local codicon = require'codicon'
 
-function _G.cclsomnifunc(findstart, base)
+function _G.clangdomnifunc(findstart, base)
   return omnifunc.lsp.create_lsp_omnifunc(function(completion_item, ctx)
     local info = completion_item.label
     local word = omnifunc.lsp.get_completion_word(completion_item)
@@ -25,27 +25,21 @@ function _G.cclsomnifunc(findstart, base)
   end)(findstart, base)
 end
 
-local ccls_on_attach = function(client, bufnr)
+local clangd_on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  buf_set_option('omnifunc', "v:lua.cclsomnifunc")
+  buf_set_option('omnifunc', "v:lua.clangdomnifunc")
 
   local opts = { noremap=true, silent=true }
 
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
 
-require('lspconfig').ccls.setup({
-  init_options = {
-    clang = {
-      extraArgs = {"-std=c++17"}
-    };
-    cache = {
-      directory="/tmp/ccls"
-    };
-  },
-  on_attach = ccls_on_attach
+require('lspconfig').clangd.setup({
+  on_attach = clangd_on_attach
 })

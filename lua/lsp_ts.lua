@@ -26,7 +26,6 @@ function _G.tsomnifunc(findstart, base)
 end
 
 local ts_on_attach = function(client, bufnr)
-  vim.notify("ccls on attach", vim.log.levels.ERROR, nil)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 

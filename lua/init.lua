@@ -1,4 +1,6 @@
-require 'lsp_ccls'
+-- require 'lsp_ccls'
+require 'lsp_clangd'
+-- require 'lsp_pyright'
 require 'lsp_lua'
 require 'lsp_ts'
 require 'lsp_rust_analyzer'

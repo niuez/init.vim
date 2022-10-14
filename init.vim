@@ -8,6 +8,9 @@ if exists('&ambw')
 endif
 
 let g:lyla_bg_is_none = v:true
+let g:tonoko_bg_is_none = v:true
+let g:testify_bg_is_none = v:true
+let g:gekkou_bg_is_none = v:false
 
 set runtimepath+=~/lyla.vim
 set runtimepath+=~/nvim-omnifunc.lua
@@ -16,6 +19,10 @@ set runtimepath+=~/.vim/lsp_signature.nvim " https://github.com/ray-x/lsp_signat
 set runtimepath+=~/.vim/nvim-treesitter " https://github.com/nvim-treesitter/nvim-treesitter
 set runtimepath+=~/.vim/nvim-tree.lua " https://github.com/kyazdani42/nvim-tree.lua
 set runtimepath+=~/.vim/Sierra
+set runtimepath+=~/.vim/tonoko.vim
+set runtimepath+=~/.vim/testify.vim
+set runtimepath+=~/.vim/gekkou.vim
+set runtimepath+=~/.vim/sci-fi
 
 filetype plugin indent on
 
@@ -27,8 +34,8 @@ set number
 set termguicolors
 "set cursorcolumn
 set encoding=UTF-8
-set cmdheight=2
-set laststatus=2
+set cmdheight=0
+set laststatus=3
 set background=dark
 set clipboard+=unnamedplus
 set splitbelow
@@ -41,7 +48,7 @@ autocmd FileType markdown hi! def link markdownItalic Normal
 set background=dark
 
 
-colorscheme lyla_iterm2
+colorscheme gekkou
 
 set expandtab
 set tabstop=2
@@ -49,6 +56,7 @@ set shiftwidth=2
 set winblend=30
 set pumblend=30
 set signcolumn=yes
+set mouse=
 
 
 nnoremap s <Nop>

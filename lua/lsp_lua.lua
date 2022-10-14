@@ -5,7 +5,6 @@ function _G.luaomnifunc(findstart, base)
 end
 
 local sumneko_lua_on_attach = function(client, bufnr)
-  vim.notify("sumneko_lua on attach", vim.log.levels.ERROR, nil)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
