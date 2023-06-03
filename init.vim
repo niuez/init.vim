@@ -23,13 +23,25 @@ set runtimepath+=~/.vim/testify.vim
 set runtimepath+=~/.vim/gekkou.vim
 set runtimepath+=~/.vim/sci-fi
 set runtimepath+=~/.vim/LuaSnip
+set runtimepath+=~/.vim/jumpcursor.vim
+set runtimepath+=~/.vim/Sakura.nvim
+set runtimepath+=~/.vim/oh-lucy.nvim
+set runtimepath+=~/.vim/kyotonight.vim
+set runtimepath+=~/.vim/adwaita.nvim
+set runtimepath+=~/.vim/lush.nvim
+set runtimepath+=~/.vim/poimandres.nvim
+set runtimepath+=~/.vim/JABS.nvim
+
+let g:adwaita_darker = v:false " for darker version
+let g:adwaita_disable_cursorline = v:false " to disable cursorline
+let g:adwaita_transparent = v:false " makes the background transparent
 
 filetype plugin indent on
 
 let g:codedark_conservative = 1
 
 syntax enable
-set number
+" set number
 "set cursorline
 set termguicolors
 "set cursorcolumn
@@ -228,6 +240,10 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 nnoremap ge :NvimTreeToggle<CR>
 lua require('init')
+
+nnoremap w <Plug>(jumpcursor-jump)
+
+nnoremap <space> :JABSOpen<CR>
 
 
 "hi Normal guibg=NONE

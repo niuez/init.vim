@@ -38,6 +38,15 @@ local pyright_on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 end
 
-require('lspconfig').pyright.setup({
-  on_attach = pyright_on_attach
+require('lspconfig').pylsp.setup({
+  on_attach = pyright_on_attach,
+  settings = {
+    pyls = {
+      plugins = {
+        pyls_mypy = {
+          enabled = true
+        }
+      }
+    }
+  }
 })
