@@ -29,7 +29,7 @@ local rust_on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-  buf_set_option('omnifunc', "v:lua.rustomnifunc")
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opts = { noremap=true, silent=true }
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -42,6 +42,8 @@ local rust_on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 end
 
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig').rust_analyzer.setup({
   on_attach = rust_on_attach,
+  --capabilities = capabilities,
 })

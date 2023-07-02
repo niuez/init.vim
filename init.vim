@@ -32,6 +32,15 @@ set runtimepath+=~/.vim/lush.nvim
 set runtimepath+=~/.vim/poimandres.nvim
 set runtimepath+=~/.vim/JABS.nvim
 
+set runtimepath+=~/.vim/nvim-cmp
+set runtimepath+=~/.vim/cmp-nvim-lsp,~/.vim/cmp-nvim-lsp/after
+set runtimepath+=~/.vim/cmp-path,~/.vim/cmp-path/after
+set runtimepath+=~/.vim/cmp_luasnip,~/.vim/cmp_luasnip/after
+set runtimepath+=~/.vim/cmp-cmdline,~/.vim/cmp-cmdline/after
+set runtimepath+=~/.vim/cmp-nvim-lsp-signature-help,~/.vim/cmp-nvim-lsp-signature-help/after
+set runtimepath+=~/.vim/lspkind.nvim
+
+
 let g:adwaita_darker = v:false " for darker version
 let g:adwaita_disable_cursorline = v:false " to disable cursorline
 let g:adwaita_transparent = v:false " makes the background transparent
@@ -218,25 +227,25 @@ autocmd CursorMoved,CursorMovedI * call s:Highlight_Matching_Paren()
 autocmd InsertEnter * match none
 
 
-set completeopt=menuone,noinsert,noselect
-function! OpenCompletion()
-    if &omnifunc != '' && !pumvisible() && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z'))
-        call feedkeys("\<C-x>\<C-o>", "n")
-    endif
-endfunction
-
-autocmd InsertCharPre * call OpenCompletion()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-inoremap <silent><expr> <TAB>
-      \ &omnifunc == '' ? "\<TAB>" :
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ "\<C-x>\<C-o>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" set completeopt=menuone,noinsert,noselect
+" function! OpenCompletion()
+"     if &omnifunc != '' && !pumvisible() && ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z'))
+"         call feedkeys("\<C-x>\<C-o>", "n")
+"     endif
+" endfunction
+" 
+" autocmd InsertCharPre * call OpenCompletion()
+" 
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction
+" inoremap <silent><expr> <TAB>
+"       \ &omnifunc == '' ? "\<TAB>" :
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ "\<C-x>\<C-o>"
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 nnoremap ge :NvimTreeToggle<CR>
 lua require('init')
