@@ -48,7 +48,7 @@ vim.g.nvim_tree_show_icons = {
 --     unmerged = codicon_map['git-compare'],
 --     renamed = codicon_map['arrow-small-right'],
 --     untracked = "*",
---     deleted = "✗",
+--     deleted = "x",
 --     ignored = "-"
 --   },
 --   folder = {
@@ -88,6 +88,9 @@ vim.g.nvim_tree_icons = {
 
 
 require'nvim-tree'.setup {
+  git = {
+    ignore = false,
+  },
   diagnostics = {
     enable = true,
     icons = {
