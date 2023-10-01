@@ -28,7 +28,6 @@ require'nvim-treesitter.configs'.setup {
 }
 
 
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 local codicon_map = require'codicon'.codicon_map
 
 vim.g.nvim_tree_show_icons = {
@@ -60,6 +59,29 @@ vim.g.nvim_tree_show_icons = {
 --     symlink_open = codicon_map['file-symlink-directory'],
 --   }
 -- }
+
+local function tree_attach(bufnr)
+  local api = require "nvim-tree.api"
+
+  local function opts(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  -- default mappings
+  -- api.config.mappings.default_on_attach(bufnr)
+
+  -- custom mappings
+  vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('close'))
+  vim.keymap.set('n', 'l', api.node.open.edit, opts('open'))
+  vim.keymap.set('n', 'a', api.fs.create, opts('add'))
+  vim.keymap.set('n', 'r', api.fs.rename, opts('rename'))
+end
+
+-- pass to setup along with your other options
+require("nvim-tree").setup {
+  ---
+  ---
+}
 vim.g.nvim_tree_icons = {
   default = "",
   symlink = "",
@@ -98,44 +120,7 @@ require'nvim-tree'.setup {
       hint = '♦',
     }
   },
-  view = {
-    mappings = {
-      custom_only = true,
-      list = {
-        { key = {"l"},                          cb = tree_cb("edit") },
-        { key = {"<2-RightMouse>", "<C-]>"},    cb = tree_cb("cd") },
-        { key = "sv",                           cb = tree_cb("vsplit") },
-        { key = "ss",                           cb = tree_cb("split") },
-        { key = "<C-t>",                        cb = tree_cb("tabnew") },
-        { key = "<",                            cb = tree_cb("prev_sibling") },
-        { key = ">",                            cb = tree_cb("next_sibling") },
-        { key = "P",                            cb = tree_cb("parent_node") },
-        { key = {"<BS>", "h"},                  cb = tree_cb("close_node") },
-        { key = "<S-CR>",                       cb = tree_cb("close_node") },
-        { key = "<Tab>",                        cb = tree_cb("preview") },
-        { key = "K",                            cb = tree_cb("first_sibling") },
-        { key = "J",                            cb = tree_cb("last_sibling") },
-        { key = "I",                            cb = tree_cb("toggle_ignored") },
-        { key = "H",                            cb = tree_cb("toggle_dotfiles") },
-        { key = "R",                            cb = tree_cb("refresh") },
-        { key = "a",                            cb = tree_cb("create") },
-        { key = "d",                            cb = tree_cb("remove") },
-        { key = "r",                            cb = tree_cb("rename") },
-        { key = "<C-r>",                        cb = tree_cb("full_rename") },
-        { key = "x",                            cb = tree_cb("cut") },
-        { key = "c",                            cb = tree_cb("copy") },
-        { key = "p",                            cb = tree_cb("paste") },
-        { key = "y",                            cb = tree_cb("copy_name") },
-        { key = "Y",                            cb = tree_cb("copy_path") },
-        { key = "gy",                           cb = tree_cb("copy_absolute_path") },
-        { key = "[c",                           cb = tree_cb("prev_git_item") },
-        { key = "]c",                           cb = tree_cb("next_git_item") },
-        { key = "-",                            cb = tree_cb("dir_up") },
-        { key = "q",                            cb = tree_cb("close") },
-        { key = "g?",                           cb = tree_cb("toggle_help") }
-      }
-    }
-  }
+  on_attach = tree_attach,
 }
 require('luasnip.loaders.from_snipmate').lazy_load()
 
@@ -212,6 +197,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local bufnr = args.buf
     local client = vim.lsp.get_client_by_id(args.data.client_id)
+    -- client.server_capabilities.semanticTokensProvider = nil
     -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     local opts = { noremap=true, silent=true }
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gf', '<cmd>lua vim.lsp.buf.format {async=true}<CR>', opts)

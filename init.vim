@@ -11,6 +11,7 @@ let g:lyla_bg_is_none = v:true
 let g:tonoko_bg_is_none = v:true
 let g:testify_bg_is_none = v:true
 let g:gekkou_bg_is_none = v:false
+let g:sbww_bg_is_none = v:false
 
 set runtimepath+=~/.vim/lyla.vim
 set runtimepath+=~/.vim/nvim-omnifunc.lua
@@ -31,6 +32,8 @@ set runtimepath+=~/.vim/adwaita.nvim
 set runtimepath+=~/.vim/lush.nvim
 set runtimepath+=~/.vim/poimandres.nvim
 set runtimepath+=~/.vim/JABS.nvim
+set runtimepath+=~/.vim/sbww.vim
+set runtimepath+=~/.vim/playground
 
 set runtimepath+=~/.vim/nvim-cmp
 set runtimepath+=~/.vim/cmp-nvim-lsp,~/.vim/cmp-nvim-lsp/after
@@ -69,7 +72,7 @@ autocmd FileType markdown hi! def link markdownItalic Normal
 set background=dark
 
 
-colorscheme gekkou
+colorscheme sbww
 
 set expandtab
 set tabstop=2
@@ -121,10 +124,6 @@ nnoremap ]q :cnext<CR>
 
 "syntax match nimFunction /\w\+\s*(/me=e-1,he=e-1 
 "
-set printheader=%t%=%N
-set printfont="Source\ Code\ Pro"
-set printoptions=syntax:n
-language en_US.UTF-8 
 
 let g:airline_right_sep=' '
 let g:airline_right_alt_sep=' '
@@ -194,7 +193,8 @@ function! SynGroup()
     echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
 endfun
 
-nmap sc :call SynGroup()<CR>
+nmap sx :call SynGroup()<CR>
+nmap sc :TSHighlightCapturesUnderCursor<CR>
 
 let s:paren_hl_on = 0
 
