@@ -1,7 +1,4 @@
 local lspkind = require'lspkind'
-lspkind.init({
-    preset = 'codicons',
-})
 
 local cmp = require'cmp'
 local function dump(o)

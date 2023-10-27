@@ -1,8 +1,8 @@
 vim.g.nvim_tree_show_icons = {
   git = 1,
   folders = 1,
-  files = 0,
-  folder_arrows = 0,
+  files = 1,
+  folder_arrows = 1,
 }
 -- vim.g.nvim_tree_icons = {
 --   default = "",
@@ -45,35 +45,32 @@ local function tree_attach(bufnr)
   vim.keymap.set('n', 'r', api.fs.rename, opts('rename'))
 end
 
--- pass to setup along with your other options
-require("nvim-tree").setup {
-  ---
-  ---
-}
-vim.g.nvim_tree_icons = {
-  default = "",
-  symlink = "",
-  git = {
-    unstaged = '?',
-    staged = "✓",
-    unmerged = '⇆',
-    renamed = '→',
-    untracked = "*",
-    deleted = "✗",
-    ignored = "-"
-  },
-  folder = {
-    arrow_open = '▿',
-    arrow_closed = '▻',
-    default = '▻',
-    open = '▿',
-    empty = '▻',
-    empty_open = '▿',
-    symlink = '►',
-    symlink_open = '▾',
-  }
-}
+-- vim.g.nvim_tree_icons = {
+--   default = "",
+--   symlink = "",
+--   git = {
+--     unstaged = '?',
+--     staged = "✓",
+--     unmerged = '⇆',
+--     renamed = '→',
+--     untracked = "*",
+--     deleted = "✗",
+--     ignored = "-"
+--   },
+--   folder = {
+--     arrow_open = '▿',
+--     arrow_closed = '▻',
+--     default = '▻',
+--     open = '▿',
+--     empty = '▻',
+--     empty_open = '▿',
+--     symlink = '►',
+--     symlink_open = '▾',
+--   }
+-- }
 
+vim.opt.termguicolors = true
+require("nvim-web-devicons").setup {}
 
 require'nvim-tree'.setup {
   git = {
@@ -90,3 +87,4 @@ require'nvim-tree'.setup {
   },
   on_attach = tree_attach,
 }
+

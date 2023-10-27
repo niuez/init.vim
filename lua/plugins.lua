@@ -15,6 +15,7 @@ require("lazy").setup({
   "niuez/SBWW",
   "neovim/nvim-lspconfig",
   "nvim-treesitter/nvim-treesitter",
+  "nvim-tree/nvim-web-devicons",
   "nvim-tree/nvim-tree.lua",
   "L3MON4D3/LuaSnip",
   "hrsh7th/nvim-cmp",
@@ -24,7 +25,11 @@ require("lazy").setup({
   "hrsh7th/cmp-nvim-lsp-signature-help",
   "saadparwaiz1/cmp_luasnip",
   "onsails/lspkind.nvim",
+  "projekt0n/github-nvim-theme",
+  "https://codeberg.org/esensar/nvim-dev-container",
 })
+
+require("devcontainer").setup{}
 
 require('lsp_config')
 require('cmp_config')
