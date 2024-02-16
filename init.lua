@@ -5,6 +5,9 @@ require('paren')
 require('plugins')
 
 vim.api.nvim_exec([[
-let g:sbww_bg_is_none=v:false
-colorscheme sbww
+colorscheme nightsnow
 ]], false)
+
+require('nvim-web-devicons').setup {
+  color_icons = false;
+}

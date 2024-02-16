@@ -27,10 +27,22 @@ require("lazy").setup({
   "onsails/lspkind.nvim",
   "projekt0n/github-nvim-theme",
   "https://codeberg.org/esensar/nvim-dev-container",
+  "kyoh86/momiji",
+  'brenoprata10/nvim-highlight-colors',
+  'niuez/gekkou.vim',
+  'niuez/nightsnow',
+  'notomo/lreload.nvim',
+  "fynnfluegge/monet.nvim",
+  "cideM/yui",
 })
 
-require("devcontainer").setup{}
+require("devcontainer").setup {}
 
 require('lsp_config')
 require('cmp_config')
 require('tree_config')
+
+require('nvim-highlight-colors').setup {}
+
+-- Enable hot-reloading myplugin
+-- require("lreload").enable("lightsnow")
